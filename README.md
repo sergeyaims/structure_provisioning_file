@@ -1,81 +1,4 @@
-Пример конфигурационного файла dashboards.yaml для provisioning дашбордов:
-
-apiVersion: 1
-
-providers:
-  - name: 'default'
-    orgId: 1
-    folder: ''
-    type: file
-    options:
-      path: /etc/grafana/provisioning/dashboards
-
-В данном примере, провайдер с именем 'default' указан для настройки provisioning дашбордов. Организации orgId установлена с идентификатором 1, что означает, что дашборды будут доступны для всех организаций. Путь к каталогу с описаниями дашбордов - /etc/grafana/provisioning/dashboards.
-
-Пример файла с описанием дашборда в JSON (example_dashboard.json):
-
-{
-  "dashboard": {
-    "id": null,
-    "uid": "example_dashboard",
-    "title": "Example Dashboard",
-    "panels": [
-      {
-        "type": "graph",
-        "title": "Example Panel",
-        "targets": [
-          {
-            "refId": "A",
-            "query": "SELECT * FROM example_table"
-          }
-        ],
-        "gridPos": {
-          "x": 0,
-          "y": 0,
-          "w": 12,
-          "h": 6
-        },
-        "id": 1
-      }
-    ],
-    "timezone": "browser",
-    "schemaVersion": 16,
-    "version": 0
-  },
-  "folderId": 0,
-  "overwrite": false
-}
-
-Пример файла с описанием дашборда в YML (example_dashboard.yml):
-
-dashboard:
-  id: null
-  uid: example_dashboard
-  title: Example Dashboard
-  panels:
-    - type: graph
-      title: Example Panel
-      targets:
-        - refId: A
-          query: SELECT * FROM example_table
-      gridPos:
-        x: 0
-        y: 0
-        w: 12
-        h: 6
-      id: 1
-  timezone: browser
-  schemaVersion: 16
-  version: 0
-folderId: 0
-overwrite: false
-
-В обоих примерах, описывается один дашборд с одной панелью типа "graph" и одним запросом к источнику данных. Заданные параметры включают название дашборда, заголовок панели, запрос данных, позицию на графической сетке и другие информационные поля.
-
-Файлы с описаниями дашбордов в формате JSON или YAML размещаются в каталоге, указанном в поле "path" конфигурационного файла dashboards.yaml. При запуске или перезагрузке Grafana, эти файлы будут автоматически обработаны, и дашборды будут созданы или обновлены в соответствии с указанными файлами описаний.
-
-
-Пример конфигурационного файла dashboards.yaml:
+**dashboards.yaml:**
 
 - apiVersion: Версия API для провиженинга. В данном случае используется значение 1.
 
@@ -93,7 +16,7 @@ overwrite: false
 
     - path: Путь к каталогу, где находятся файлы описаний дашбордов.
 
-Пример файла с описанием дашборда в JSON (example_dashboard.json):
+**JSON/YAML (example_dashboard.json/example_dashboard.yaml):**
 
 - dashboard: Объект, содержащий информацию о дашборде.
 
@@ -133,4 +56,4 @@ overwrite: false
 
 - overwrite: Опция, указывающая, должен ли быть перезаписан существующий дашборд, если он уже существует с таким же UID. В данном случае используется значение false, что значит, что существующий дашборд не будет перезаписан.
 
-Аналогичные поля присутствуют и в примере файла с описанием дашборда в формате YML (example_dashboard.yml), только синтаксис YML используется вместо JSON.
+
